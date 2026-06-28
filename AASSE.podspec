@@ -28,9 +28,13 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/AaronFeng/AASSE.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '15.0'
 
   s.source_files = 'AASSE/Classes/**/*'
+  s.swift_versions = '6.0'
+  s.test_spec 'Tests' do |test_spec|
+    test_spec.source_files = 'AASSE/Tests/**/*'
+  end
   
   # s.resource_bundles = {
   #   'AASSE' => ['AASSE/Assets/*.png']

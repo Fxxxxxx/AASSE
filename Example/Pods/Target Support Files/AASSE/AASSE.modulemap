@@ -1,0 +1,6 @@
+framework module AASSE {
+  umbrella header "AASSE-umbrella.h"
+
+  export *
+  module * { export * }
+}

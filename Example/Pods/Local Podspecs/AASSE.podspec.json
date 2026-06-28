@@ -1,0 +1,31 @@
+{
+  "name": "AASSE",
+  "version": "0.1.0",
+  "summary": "A short description of AASSE.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/AaronFeng/AASSE",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "AaronFeng": "aaronfeng1993@163.com"
+  },
+  "source": {
+    "git": "https://github.com/AaronFeng/AASSE.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "15.0"
+  },
+  "source_files": "AASSE/Classes/**/*",
+  "swift_versions": "6.0",
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "source_files": "AASSE/Tests/**/*"
+    }
+  ],
+  "swift_version": "6.0"
+}
