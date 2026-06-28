@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'AASSE'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of AASSE.'
+  s.summary          = 'Swift 6 SSE SDK with AsyncStream and RFC compliance'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+AASSE is a Server-Sent Events (SSE) SDK for Swift 6, featuring:
+- URLSession bytes streaming interface
+- AsyncStream + enum callback pattern
+- Full RFC 6202/HTML Living Standard compliance
+- Objective-C bridge support
+- Exponential backoff retry mechanism
+- Comprehensive unit test coverage
                        DESC
 
   s.homepage         = 'https://github.com/AaronFeng/AASSE'

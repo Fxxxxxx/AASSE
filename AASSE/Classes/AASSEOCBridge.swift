@@ -1,9 +1,8 @@
 import Foundation
-import AASSE
 
 /// Objective-C 桥接层 - SSE 客户端
 ///
-/// 内部封装 Swift SSEClient，通过 delegate 模式对外暴露事件回调
+/// 内部封装 Swift AASSEClient，通过 delegate 模式对外暴露事件回调
 /// 支持 Objective-C 和 Swift 混编项目使用
 ///
 /// 生命周期说明：

@@ -1,9 +1,9 @@
 import XCTest
-import AASSE
+@testable import AASSE
 
-final class SSEParserTests: XCTestCase {
+final class AASSEParserTests: XCTestCase {
     func testSingleEvent() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         let events1 = parser.processLine("event:message")
         XCTAssertEqual(events1.count, 0)
@@ -24,7 +24,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testEventWithId() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         _ = parser.processLine("id:123")
         _ = parser.processLine("event:update")
@@ -41,11 +41,11 @@ final class SSEParserTests: XCTestCase {
             XCTFail("Expected message event")
         }
         
-        XCTAssertEqual(parser.getLastEventID(), "123")
+        XCTAssertEqual(parser.lastEventID, "123")
     }
     
     func testMultiLineData() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         _ = parser.processLine("data:line1")
         _ = parser.processLine("data:line2")
@@ -62,21 +62,21 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testRetryEvent() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         let events = parser.processLine("retry:5000")
         
         XCTAssertEqual(events.count, 1)
         
         if case .retry(let interval) = events[0] {
-            XCTAssertEqual(interval, 5000)
+            XCTAssertEqual(interval, 5.0)
         } else {
             XCTFail("Expected retry event")
         }
     }
     
     func testCommentLine() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         let events = parser.processLine(":this is a comment")
         
@@ -84,7 +84,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testEmptyEvent() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         let events = parser.processLine("")
         
@@ -92,7 +92,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testMultipleEvents() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         _ = parser.processLine("event:first")
         _ = parser.processLine("data:1")
@@ -116,7 +116,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testEventWithNullCharacterInId() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         _ = parser.processLine("id:abc\0def")
         _ = parser.processLine("data:test")
@@ -130,7 +130,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testDefaultEventName() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         _ = parser.processLine("data:hello")
         let events = parser.processLine("")
@@ -143,7 +143,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testBOMHandling() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         let events1 = parser.processLine("\u{FEFF}event:test")
         XCTAssertEqual(events1.count, 0)
@@ -160,7 +160,7 @@ final class SSEParserTests: XCTestCase {
     }
     
     func testCustomFieldIgnored() {
-        var parser = SSEParser()
+        var parser = AASSEParser()
         
         _ = parser.processLine("custom:value")
         _ = parser.processLine("data:test")
