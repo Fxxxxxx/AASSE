@@ -27,11 +27,11 @@ AASSE is a Server-Sent Events (SSE) SDK for Swift 6, featuring:
 - Comprehensive unit test coverage
                        DESC
 
-  s.homepage         = 'https://github.com/AaronFeng/AASSE'
+  s.homepage         = 'https://github.com/Fxxxxxx/AASSE'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'AaronFeng' => 'aaronfeng1993@163.com' }
-  s.source           = { :git => 'https://github.com/AaronFeng/AASSE.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Fxxxxxx/AASSE.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '15.0'
