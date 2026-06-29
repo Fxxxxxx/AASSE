@@ -309,7 +309,10 @@ public actor AASSEClient: Sendable {
         
         // 逐字节读取
         for try await byte in bytes {
-            if Task.isCancelled { break }  // 显式检查 cancel，提前退出
+            if Task.isCancelled {
+                // cancel 后立即退出，不处理剩余数据
+                return
+            }
             if byte == 0x0A { // LF (\n)
                 // 如果前一个字节不是 CR，则处理当前行
                 // 避免 CRLF 被处理两次

@@ -67,17 +67,18 @@ public class AASSEClientOC: NSObject, @unchecked Sendable {
         taskID += 1
         let currentTaskID = taskID
         let newTask = Task { [self] in
+            defer {
+                Task { @MainActor in
+                    if self.taskID == currentTaskID {
+                        self.task = nil
+                    }
+                }
+            }
+            
             let stream = await client.connect()
             for await event in stream {
-                if Task.isCancelled { break }  // 显式检查 cancel，提前退出
+                if Task.isCancelled { return }
                 handleEvent(event)
-            }
-            // 连接结束后清理任务引用，释放强持有
-            // 仅当 taskID 仍匹配时才清理，避免覆盖新任务
-            await MainActor.run {
-                if self.taskID == currentTaskID {
-                    self.task = nil
-                }
             }
         }
         task = newTask
