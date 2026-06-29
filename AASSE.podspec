@@ -38,9 +38,6 @@ AASSE is a Server-Sent Events (SSE) SDK for Swift 6, featuring:
 
   s.source_files = 'AASSE/Classes/**/*'
   s.swift_versions = '6.0'
-  s.test_spec 'Tests' do |test_spec|
-    test_spec.source_files = 'AASSE/Tests/**/*'
-  end
   
   # s.resource_bundles = {
   #   'AASSE' => ['AASSE/Assets/*.png']
