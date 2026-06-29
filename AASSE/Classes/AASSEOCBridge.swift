@@ -69,6 +69,7 @@ public class AASSEClientOC: NSObject, @unchecked Sendable {
         let newTask = Task { [self] in
             let stream = await client.connect()
             for await event in stream {
+                if Task.isCancelled { break }  // 显式检查 cancel，提前退出
                 handleEvent(event)
             }
             // 连接结束后清理任务引用，释放强持有
